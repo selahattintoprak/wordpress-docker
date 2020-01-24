@@ -1,3 +1,14 @@
+
+.DS_Store
+.vscode
+.git
+.gitignore
+.gitattributes
+.env
 Dockerfile
 .dockerignore
+README.md
+readme.md
+LICENSE
 /helper-scripts
+.env

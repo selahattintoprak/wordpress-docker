@@ -21,7 +21,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "${PORT}:80"
+      - "${PMA_PORT}:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -33,10 +33,10 @@ services:
       - db
     image: wordpress:latest
     ports:
-      - "${PORT}:80"
+      - "${WP_PORT}:80"
     restart: always
     volumes: 
-      - ["./:/var/www/html"] #Full wordpress project
+      - "./wordpress/:/var/www/html" #Full wordpress project
       #- ./plugin-name/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
       #- ./theme-name/:/var/www/html/wp-content/themes/theme-name # Theme development
     environment:
