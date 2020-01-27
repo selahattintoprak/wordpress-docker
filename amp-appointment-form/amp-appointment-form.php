@@ -36,12 +36,31 @@ else {
 ?>
 <script>
 "use strict";
-function submitForm(oFormElement)
-{
+var httpCallsCount = 0;
+function submitForm(oFormElement){
+    let submitButton = document.getElementById("submit-button");
+    httpCallsCount++
     var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 1){
+            submitButton.value = "Sending...";
+        }
+        else if (this.readyState == 4 && this.status == 201) {
+            submitButton.style.backgroundColor = "#28a745";
+            submitButton.style.opacity=".65";
+            submitButton.style.cursor="not-allowed";
+            submitButton.value = "Sent!";
+            submitButton.disabled = true;
+        }
+        else if (this.readyState == 4 && this.status != 201){
+            submitButton.value = "Failed!";
+            if(httpCallsCount > 2){
+                submitButton.disabled = true;
+            }
+        } 
+    };
     xhr.onload = function(){ 
-      document.getElementById("submit-success").innerHTML="Succes!" 
-      document.getElementById("submit-button").disabled=true;
+
     }
     xhr.open(oFormElement.method, oFormElement.getAttribute("action"));
     xhr.send(new FormData(oFormElement));
@@ -146,16 +165,16 @@ function submitForm(oFormElement)
                 </div>
                 <fieldset class="flex-container-center">
                     <div class="fields">
-                        <input type="submit" id="submit-button" value="Submit">
-                        <div id="submit-success"></div>
+                        <input type="submit" id="submit-button" value="Send">
+                        <p id="submit-success"></p>
                         <div submit-success>
                             <template type="amp-mustache">
-                                Subscription successful!
+                                Send successful!
                             </template>
                         </div>
                         <div submit-error>
                             <template type="amp-mustache">
-                                Subscription failed!
+                                Send failed!
                             </template>
                         </div>
                     </div>
