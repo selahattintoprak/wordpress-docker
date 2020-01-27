@@ -79,6 +79,7 @@ input[type="submit"] {
   background-color: #ff8c00;
   color: white;
   font-size: large;
+  margin-top: 0.8rem;
 }
 
 input[type="submit"]:hover {
