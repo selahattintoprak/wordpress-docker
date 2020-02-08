@@ -112,8 +112,8 @@ function submitForm(oFormElement){
                 <label for="time">Time <span class="forms-req-symbol">*</span></label>
                 <select name="time" required class="select-css">
                     <option value="Select Time">Select Time</option>
-                    <option value="9:00">9:00 AM</option>
-                    <option value="9:30">9:30 AM</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="09:30">9:30 AM</option>
                     <option value="10:00">10:00 AM</option>
                     <option value="10:30">10:30 AM</option>
                     <option value="11:00">11:00 AM</option>
